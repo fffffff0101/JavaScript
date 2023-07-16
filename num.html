@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>숫자 맞추기 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        .input-group label {
+            display: inline-block;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 200px;
+            padding: 5px;
+        }
+
+        .result {
+            margin-top: 10px;
+        }
+
+        .result p {
+            margin: 0;
+        }
+
+        .attempts {
+            margin-top: 20px;
+        }
+
+        .attempts p {
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>숫자 맞추기 게임</h1>
+        <div class="input-group">
+            <label>추측한 숫자:</label>
+            <input type="number" id="guess" placeholder="1에서 100 사이의 숫자를 입력하세요">
+        </div>
+        <button onclick="checkGuess()">확인</button>
+        <div class="result" id="result"></div>
+        <div class="attempts" id="attempts"></div>
+        <div id="count"></div>
+    </div>
+
+
+    <script>
+        var secretNumber = Math.floor(Math.random() * 100) + 1;
+        var countNumber = [];
+        var attempts = 1;
+        var count = 1;
+
+        console.log(secretNumber);
+
+        function checkGuess() {
+            var guess = document.getElementById("guess").value;14121
+            var result = document.getElementById("result");
+            var attemptsMain = document.getElementById('attempts');
+            var count = document.getElementById('count');
+
+
+            if(countNumber.length < 10) {
+                if (isNaN(guess)) {
+                    result.innerHTML = "숫자를 입력해주세요.";
+                } else if (guess < 1 || guess > 100) {
+                    result.innerHTML = "1부터 100 사이의 숫자를 입력해주세요.";
+                } else {
+                    if (guess == secretNumber) {
+                        result.innerHTML = `<p>정답이다. 시도 횟수 : ${attempts}</p>`;
+                    } else if (guess > secretNumber) {
+                        result.innerHTML = "더 작은 숫자를 입력해라.";
+                    } else if (guess < secretNumber) {
+                        result.innerHTML = "더 큰 숫자를 입력해라.";
+                    }
+                } 
+            } else{
+                alert("게임오버");
+            }
+            count++;
+            attempts++;
+            countNumber.push(guess);
+
+
+            console.log(countNumber);
+            console.log(countNumber.length);
+
+            var attemptsText = '시도한 숫자 : ';
+
+            countNumber.forEach((number, index) => {
+                attemptsText += number ;
+                if(index !== countNumber.length - 1){
+                    attemptsText += ", ";
+                }
+            });
+            attemptsMain.innerHTML = `<p>시도한 숫자 : ${countNumber}</p>`;
+            
+
+            count.innerHTML = `<p> 시도한 횟수 : ${count}</p>`;
+        }
+
+
+        // for(var i = 0; i < countNumber.length; i++){
+        //     document.write(countNumber[i]);
+        // }
+        
+        
+      </script>
+</body>
+</html>
+
+<!-- 미완성 -->
